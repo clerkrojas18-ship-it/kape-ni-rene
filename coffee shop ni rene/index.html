@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kape Ni Rene | Filipino Coffee Shop</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f6efe5;
+            color: #2d211b;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(38, 27, 21, 0.96);
+            box-shadow: 0 5px 25px rgba(0,0,0,.15);
+        }
+
+        .logo {
+            color: #f4c58b;
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            transition: .3s;
+        }
+
+        .nav-links a:hover {
+            color: #f4c58b;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            padding: 130px 7% 70px;
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            align-items: center;
+            gap: 60px;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(196,125,62,.20), transparent 30%),
+                linear-gradient(135deg, #2b1d17, #4b3023);
+            color: white;
+            overflow: hidden;
+        }
+
+        .eyebrow {
+            color: #f4c58b;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(55px, 8vw, 100px);
+            line-height: .9;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #d8904e;
+        }
+
+        .hero p {
+            max-width: 580px;
+            color: #e8d9ca;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: .3s;
+        }
+
+        .btn-primary {
+            background: #c8793e;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            background: #e09a5c;
+        }
+
+        .btn-light {
+            border: 1px solid #f4c58b;
+            color: #f4c58b;
+        }
+
+        .btn-light:hover {
+            background: #f4c58b;
+            color: #2b1d17;
+        }
+
+        /* RENE PHOTO */
+        .photo-wrap {
+            position: relative;
+            max-width: 540px;
+            justify-self: center;
+        }
+
+        .photo-wrap::before {
+            content: "";
+            position: absolute;
+            inset: -18px 18px 18px -18px;
+            border: 2px solid #d8904e;
+            border-radius: 35px;
+            transform: rotate(-4deg);
+        }
+
+        .photo-wrap img {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 560px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 35px;
+            box-shadow: 25px 25px 60px rgba(0,0,0,.35);
+        }
+
+        .photo-label {
+            position: absolute;
+            bottom: 25px;
+            left: -20px;
+            background: #fff8ef;
+            color: #33231a;
+            padding: 17px 22px;
+            border-radius: 16px;
+            box-shadow: 0 12px 30px rgba(0,0,0,.2);
+            z-index: 2;
+        }
+
+        .photo-label small {
+            color: #9a6036;
+            display: block;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .photo-label strong {
+            font-family: Georgia, serif;
+            font-size: 22px;
+        }
+
+        /* SECTION */
+        section {
+            padding: 95px 7%;
+        }
+
+        .section-head {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+
+        .section-head small {
+            color: #a76032;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+
+        .section-head h2 {
+            font-family: Georgia, serif;
+            font-size: 45px;
+            margin: 10px 0;
+        }
+
+        .section-head p {
+            color: #76665a;
+        }
+
+        /* STORY */
+        .story {
+            background: #fffaf4;
+        }
+
+        .story-grid {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .story-card {
+            background: #efe0cf;
+            padding: 45px;
+            border-radius: 30px;
+            position: relative;
+        }
+
+        .story-card::after {
+            content: "☕";
+            position: absolute;
+            right: 25px;
+            top: 20px;
+            font-size: 55px;
+            opacity: .25;
+        }
+
+        .story-card h3 {
+            font-family: Georgia, serif;
+            font-size: 36px;
+            margin-bottom: 18px;
+        }
+
+        .story-card p {
+            color: #67574b;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .quote {
+            border-left: 4px solid #c8793e;
+            padding-left: 18px;
+            margin-top: 25px;
+            font-style: italic;
+        }
+
+        /* MENU */
+        .menu {
+            background: #302119;
+            color: white;
+        }
+
+        .menu .section-head p {
+            color: #cdbeb1;
+        }
+
+        .menu .section-head small {
+            color: #f4c58b;
+        }
+
+        .menu-grid {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .menu-item {
+            padding: 30px;
+            border: 1px solid #594237;
+            border-radius: 22px;
+            background: #3c2a21;
+            transition: .3s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-8px);
+            border-color: #d8904e;
+        }
+
+        .menu-item .icon {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .menu-item h3 {
+            font-family: Georgia, serif;
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .menu-item p {
+            color: #cdbeb1;
+            font-size: 14px;
+            min-height: 65px;
+        }
+
+        .price {
+            color: #f4c58b;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        /* CULTURE */
+        .culture {
+            background: #ead8c1;
+        }
+
+        .culture-box {
+            max-width: 1100px;
+            margin: auto;
+            text-align: center;
+            background: #fffaf4;
+            padding: 55px;
+            border-radius: 30px;
+        }
+
+        .culture-box h2 {
+            font-family: Georgia, serif;
+            font-size: 43px;
+            margin-bottom: 15px;
+        }
+
+        .culture-box p {
+            max-width: 760px;
+            margin: 0 auto 20px;
+            color: #66564b;
+            line-height: 1.8;
+        }
+
+        .culture-pills {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .pill {
+            padding: 12px 18px;
+            border-radius: 50px;
+            background: #efe0cf;
+            font-weight: bold;
+        }
+
+        /* CONTACT */
+        .contact {
+            background: #c8793e;
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-family: Georgia, serif;
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .contact p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .contact-info div {
+            padding: 13px 20px;
+            border-radius: 15px;
+            background: rgba(255,255,255,.15);
+        }
+
+        /* FOOTER */
+        footer {
+            background: #201612;
+            color: #b9a99d;
+            text-align: center;
+            padding: 28px;
+        }
+
+        footer strong {
+            color: #f4c58b;
+        }
+
+        /* MOBILE */
+        @media (max-width: 850px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero,
+            .story-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 120px;
+            }
+
+            .photo-wrap {
+                width: 90%;
+            }
+
+            .photo-wrap img {
+                height: 450px;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 560px) {
+            section {
+                padding: 70px 5%;
+            }
+
+            .hero {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+            .hero h1 {
+                font-size: 58px;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .culture-box {
+                padding: 35px 20px;
+            }
+
+            .culture-box h2,
+            .contact h2 {
+                font-size: 35px;
+            }
+
+            .photo-wrap img {
+                height: 390px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">☕ KAPE <span>NI RENE</span></div>
+
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#story">Our Story</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#culture">Coffee Culture</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+
+        <div>
+            <div class="eyebrow">Filipino Coffee • Since 2026</div>
+
+            <h1>
+                Kape <span>Ni</span><br>
+                Rene
+            </h1>
+
+            <p>
+                A cozy Filipino coffee experience where every cup
+                comes with a story, a smile, and a little bit of home.
+            </p>
+
+            <div class="buttons">
+                <a href="#menu" class="btn btn-primary">Explore Menu</a>
+                <a href="#story" class="btn btn-light">Meet Rene</a>
+            </div>
+        </div>
+
+        <div class="photo-wrap">
+            <img src="rene.png" alt="Rene - Kape Ni Rene">
+            <div class="photo-label">
+                <small>The Face Behind</small>
+                <strong>Kape Ni Rene</strong>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- STORY -->
+    <section class="story" id="story">
+
+        <div class="section-head">
+            <small>Our Story</small>
+            <h2>More Than Just Kape</h2>
+            <p>Good coffee brings people together.</p>
+        </div>
+
+        <div class="story-grid">
+
+            <div class="story-card">
+                <h3>Welcome to Rene's Table</h3>
+
+                <p>
+                    Kape Ni Rene is inspired by the simple Filipino
+                    tradition of sitting down, sharing stories, and
+                    enjoying a warm cup of coffee.
+                </p>
+
+                <p>
+                    From strong Barako coffee to creamy modern
+                    favorites, every drink is prepared to make you
+                    feel right at home.
+                </p>
+
+                <div class="quote">
+                    "Tara, magkape tayo."
+                </div>
+            </div>
+
+            <div>
+                <h3 style="font-family: Georgia, serif; font-size: 34px; margin-bottom: 15px;">
+                    Brewed with heart.
+                </h3>
+
+                <p style="color:#67574b; line-height:1.9;">
+                    We believe that coffee is not only about the
+                    beans. It is about the people, conversations,
+                    memories, and moments shared over every cup.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- MENU -->
+    <section class="menu" id="menu">
+
+        <div class="section-head">
+            <small>Our Menu</small>
+            <h2>Rene's Favorites</h2>
+            <p>Simple drinks. Big flavor. Filipino soul.</p>
+        </div>
+
+        <div class="menu-grid">
+
+            <div class="menu-item">
+                <div class="icon">☕</div>
+                <h3>Barako Brew</h3>
+                <p>Bold Philippine Barako coffee with a rich aroma.</p>
+                <div class="price">₱95</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="icon">🥛</div>
+                <h3>Rene's Latte</h3>
+                <p>Espresso blended with smooth, creamy milk.</p>
+                <div class="price">₱125</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="icon">🧊</div>
+                <h3>Iced Kape</h3>
+                <p>Cold and refreshing coffee for sunny afternoons.</p>
+                <div class="price">₱115</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="icon">🍠</div>
+                <h3>Ube Latte</h3>
+                <p>A creamy coffee drink with a distinctly Filipino ube flavor.</p>
+                <div class="price">₱135</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="icon">🍫</div>
+                <h3>Tsokolate</h3>
+                <p>Rich Filipino-style chocolate for a comforting treat.</p>
+                <div class="price">₱110</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="icon">🥐</div>
+                <h3>Ensaymada</h3>
+                <p>Soft, buttery Filipino pastry made for coffee pairing.</p>
+                <div class="price">₱75</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CULTURE -->
+    <section class="culture" id="culture">
+
+        <div class="culture-box">
+            <h2>Filipino Coffee Culture</h2>
+
+            <p>
+                In the Philippines, coffee is more than a morning drink.
+                It is a reason to gather, talk, laugh, and spend time
+                with the people who matter.
+            </p>
+
+            <p>
+                Kape Ni Rene celebrates that tradition through local
+                flavors and the Filipino spirit of hospitality.
+            </p>
+
+            <div class="culture-pills">
+                <div class="pill">☕ Barako Coffee</div>
+                <div class="pill">🌱 Local Beans</div>
+                <div class="pill">❤️ Filipino Hospitality</div>
+                <div class="pill">🏠 Feels Like Home</div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+
+        <h2>Tara, magkape tayo!</h2>
+
+        <p>
+            Drop by Kape Ni Rene, grab your favorite drink,
+            and make some memories.
+        </p>
+
+        <div class="contact-info">
+            <div>📍 Philippines</div>
+            <div>📞 0912 345 6789</div>
+            <div>🕐 7:00 AM – 9:00 PM</div>
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>
+            © 2026 <strong>Kape Ni Rene</strong> —
+            Brewed with ❤️ in the Philippines.
+        </p>
+    </footer>
+
+</body>
+</html>
